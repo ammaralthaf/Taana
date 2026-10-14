@@ -86,8 +86,7 @@ export function Footer() {
     <footer className="border-t border-line bg-panel2">
       <div className="gutter mx-auto grid max-w-[1440px] gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="min-w-0">
-          <p className="text-3xl font-black tracking-tight" style={{ fontStretch: '125%' }}>{BRAND}</p>
-          <p className="mt-2 max-w-[36ch] text-sm text-muted">Hoodies we design and make ourselves. [ADD ONE LINE ABOUT YOUR BRAND]</p>
+          <p className="max-w-[36ch] text-sm text-muted">Hoodies we design and make ourselves. [ADD ONE LINE ABOUT YOUR BRAND]</p>
         </div>
         <nav aria-label="Footer shop" className="flex flex-col items-start">
           <p className="caps mb-2 text-xs font-black">Shop</p>
@@ -100,6 +99,9 @@ export function Footer() {
           <button type="button" onClick={() => goSection('how')} className={col}>How it works</button>
           <p className="mt-2 text-sm text-muted">[ADD CONTACT EMAIL]<br />[ADD INSTAGRAM HANDLE]</p>
         </nav>
+      </div>
+      <div className="overflow-hidden" aria-hidden="true">
+        <p className="gutter mx-auto max-w-[1440px] select-none whitespace-nowrap font-black uppercase leading-[0.8] tracking-tight" style={{ fontSize: '25vw', fontStretch: '100%' }}>{BRAND}</p>
       </div>
       <p className="gutter mx-auto max-w-[1440px] border-t border-line py-5 text-sm text-muted">&copy; {BRAND}. All rights reserved.</p>
     </footer>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Heart, Truck, RotateCcw, Package, ChevronDown, Minus, Plus } from 'lucide-react';
+import { Heart, Truck, RotateCcw, Package, ChevronDown, ChevronLeft, ChevronRight, Minus, Plus } from 'lucide-react';
 import ImageSlot from '../components/ImageSlot.jsx';
 import ProductCard, { Badge, Price } from '../components/ProductCard.jsx';
 import { PRODUCTS, SIZES, SIZE_CHART, DETAILS, CARE, RETURNS, PHOTO_COUNT, FREE_SHIP_OVER, DISPATCH_DAYS, money, bySlug } from '../data/store.js';
@@ -43,7 +43,7 @@ export default function Product({ slug }) {
 
   const liked = wish.includes(product.slug);
   const more = PRODUCTS.filter((p) => p.slug !== product.slug)
-    .sort((a, b) => (b.collection === product.collection) - (a.collection === product.collection)).slice(0, 4);
+    .sort((a, b) => (b.collection === product.collection) - (a.collection === product.collection)).slice(0, 3);
 
   const add = () => {
     if (!size) { setErr('Choose a size first.'); if (sizeRef.current) sizeRef.current.focus(); return; }
@@ -60,20 +60,23 @@ export default function Product({ slug }) {
         <span className="text-fg">{product.name}</span>
       </nav>
 
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-14">
-        {/* Gallery */}
-        <div className="grid min-w-0 items-start gap-3 sm:grid-cols-[88px_1fr]">
-          <div className="order-2 flex gap-2 sm:order-1 sm:flex-col">
-            {Array.from({ length: PHOTO_COUNT }).map((_, n) => (
-              <button key={n} type="button" aria-pressed={photo === n} aria-label={'Show photo ' + (n + 1)} onClick={() => setPhoto(n)}
-                className={'w-20 border-2 transition-colors duration-200 sm:w-full ' + (photo === n ? 'border-fg' : 'border-transparent opacity-70 hover:opacity-100')}>
-                <ImageSlot product={product} index={n} small ratio="4 / 5" className="!p-0.5" />
-              </button>
-            ))}
-          </div>
-          <div className="relative order-1 sm:order-2">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-16">
+        {/* Gallery: one photo at a time */}
+        <div className="min-w-0">
+          <div className="relative">
             <ImageSlot key={photo} product={product} index={photo} eager className="rise" />
             <Badge product={product} />
+            <div className="absolute bottom-3 right-3 flex gap-1">
+              <button type="button" aria-label="Previous photo" onClick={() => setPhoto((photo + PHOTO_COUNT - 1) % PHOTO_COUNT)} className="grid h-11 w-11 place-items-center bg-bg transition-colors duration-200 hover:bg-fg hover:text-bg"><ChevronLeft size={20} aria-hidden="true" /></button>
+              <button type="button" aria-label="Next photo" onClick={() => setPhoto((photo + 1) % PHOTO_COUNT)} className="grid h-11 w-11 place-items-center bg-bg transition-colors duration-200 hover:bg-fg hover:text-bg"><ChevronRight size={20} aria-hidden="true" /></button>
+            </div>
+          </div>
+          <div className="mt-3 flex items-center gap-2" role="group" aria-label="Photos">
+            {Array.from({ length: PHOTO_COUNT }).map((_, n) => (
+              <button key={n} type="button" aria-pressed={photo === n} aria-label={'Show photo ' + (n + 1)} onClick={() => setPhoto(n)}
+                className="grid h-11 w-11 place-items-center"><span className={'block h-1 transition-all duration-300 ' + (photo === n ? 'w-10 bg-fg' : 'w-6 bg-line')} /></button>
+            ))}
+            <span className="tnum ml-auto text-sm text-muted">{photo + 1} / {PHOTO_COUNT}</span>
           </div>
         </div>
 
@@ -169,7 +172,7 @@ export default function Product({ slug }) {
 
       <section aria-labelledby="more-h" className="mt-20">
         <h2 id="more-h" className="mb-8 font-black uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontStretch: '75%' }}>You may also like</h2>
-        <div className="grid grid-cols-2 gap-x-3 gap-y-8 lg:grid-cols-4 lg:gap-x-5">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 lg:gap-x-5">
           {more.map((p) => <ProductCard key={p.slug} product={p} />)}
         </div>
       </section>
