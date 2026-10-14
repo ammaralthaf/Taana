@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Layout concept: a quiet monochrome shop in the Zara and Gymshark mould. Full-bleed bands, sharp corners, heavy condensed capitals, one turmeric accent kept for the cart badge and selected states. */
+:root {
+  --bg: #FAFAF8; --panel: #FFFFFF; --panel2: #F0F0EC; --fg: #0E0F11; --muted: #55595F;
+  --line: #DCDDD8; --accent: #E8A93A; --on-accent: #0E0F11; --stage: #EDEDE9; --grid: #D2D3CD;
+  --hero: #E9E9E4; --focus: #2B3A8C; --danger: #B3261E;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C0D0F; --panel: #131518; --panel2: #1B1E22; --fg: #F2F2EE; --muted: #A3A7AE;
+    --line: #2A2D33; --accent: #E8A93A; --on-accent: #0E0F11; --stage: #17191D; --grid: #262A30;
+    --hero: #16181C; --focus: #E8A93A; --danger: #FF8A80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C0D0F; --panel: #131518; --panel2: #1B1E22; --fg: #F2F2EE; --muted: #A3A7AE;
+  --line: #2A2D33; --accent: #E8A93A; --on-accent: #0E0F11; --stage: #17191D; --grid: #262A30;
+  --hero: #16181C; --focus: #E8A93A; --danger: #FF8A80;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: 'Archivo', system-ui, sans-serif; font-size: 16px; }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.dots { background-image: radial-gradient(var(--grid) 1.2px, transparent 1.2px); background-size: 22px 22px; }
+.rise { animation: rise .28s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.pop { animation: pop .4s cubic-bezier(.2, 1.5, .4, 1); }
+@keyframes pop { from { transform: scale(.4); } to { transform: scale(1); } }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+input[type="range"] { accent-color: var(--focus); }
+.tnum { font-variant-numeric: tabular-nums; }
+.modal-in { animation: modalIn .38s cubic-bezier(.2, .9, .3, 1) both; }
+@keyframes modalIn { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
+.draw { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: draw .6s .15s ease forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.confetti-piece { animation: fall 1.7s ease-out both; }
+@keyframes fall { from { opacity: 1; transform: translate(0, 0) rotate(0); } to { opacity: 0; transform: translate(var(--dx), 170px) rotate(var(--rot)); } }
+.caps { text-transform: uppercase; letter-spacing: .14em; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .draw { stroke-dashoffset: 0 !important; }
+  .confetti-piece { display: none; }
+}
