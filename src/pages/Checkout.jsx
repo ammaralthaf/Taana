@@ -147,12 +147,12 @@ function Section({ id, n, title, open, done, enabled, summary, onToggle, childre
           disabled={!enabled} onClick={onToggle}
           className="flex min-h-[72px] w-full items-center gap-4 px-5 py-4 text-left transition-colors duration-200 hover:bg-panel2 disabled:cursor-not-allowed disabled:hover:bg-panel"
         >
-          <span className={'grid h-8 w-8 shrink-0 place-items-center text-sm font-black ' +
+          <span className={'grid h-8 w-8 shrink-0 place-items-center text-sm font-extrabold ' +
             (done ? 'bg-fg text-bg' : open ? 'border-2 border-fg' : 'border-2 border-line text-muted')}>
             {done ? <Check size={16} strokeWidth={3} aria-hidden="true" /> : n}
           </span>
           <span className="min-w-0 flex-1">
-            <span className={'caps block text-sm font-black ' + (enabled ? '' : 'text-muted')}>{title}</span>
+            <span className={'caps block text-sm font-extrabold ' + (enabled ? '' : 'text-muted')}>{title}</span>
             {done && !open && summary && <span className="mt-1 block truncate text-sm text-muted">{summary}</span>}
           </span>
           {done && !open && <span className="caps text-xs font-bold underline underline-offset-4">Edit</span>}
@@ -184,7 +184,7 @@ function CardPreview({ number, name, exp, cvv, brand, flipped }) {
         <div className="absolute inset-0 flex flex-col justify-between p-5" style={face}>
           <div className="flex items-start justify-between">
             <svg width="44" height="32" viewBox="0 0 44 32"><rect x="1" y="1" width="42" height="30" rx="5" fill="#E8A93A" /><path d="M1 11h42M1 21h42M15 1v30M29 1v30" stroke="rgba(0,0,0,.35)" strokeWidth="1.2" fill="none" /></svg>
-            <span className="text-xs font-black tracking-[0.18em] opacity-90">{brand ? BRAND_LABEL[brand] : 'CARD'}</span>
+            <span className="text-xs font-extrabold tracking-[0.18em] opacity-90">{brand ? BRAND_LABEL[brand] : 'CARD'}</span>
           </div>
           <p className="tnum text-[clamp(1.05rem,4.4vw,1.35rem)] font-bold tracking-[0.12em]">{shown}</p>
           <div className="flex items-end justify-between gap-3 text-[11px]">
@@ -196,7 +196,7 @@ function CardPreview({ number, name, exp, cvv, brand, flipped }) {
           <div className="mt-6 h-10 bg-black" />
           <div className="mx-5 mt-5 flex items-center justify-end gap-3 bg-white px-3 py-2 text-black">
             <span className="text-[10px] font-bold opacity-60">CVV</span>
-            <span className="tnum min-w-[34px] text-right text-sm font-black tracking-widest">{cvv ? cvv.replace(/./g, '•') : '•••'}</span>
+            <span className="tnum min-w-[34px] text-right text-sm font-extrabold tracking-widest">{cvv ? cvv.replace(/./g, '•') : '•••'}</span>
           </div>
         </div>
       </div>
@@ -236,16 +236,16 @@ function SuccessModal({ order, onDone }) {
           <circle cx="42" cy="42" r="38" fill="none" strokeWidth="4" className="draw" style={{ stroke: 'var(--fg)', '--len': 240 }} />
           <path d="M26 43 L38 55 L59 31" fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="draw" style={{ stroke: 'var(--accent)', '--len': 60, animationDelay: '.45s' }} />
         </svg>
-        <h2 id="done-title" className="mt-5 text-4xl font-black uppercase leading-none" style={{ fontStretch: '75%' }}>Order placed</h2>
+        <h2 id="done-title" className="mt-5 text-4xl font-extrabold uppercase leading-none" style={{ fontStretch: '85%' }}>Order placed</h2>
         <p className="mt-3 text-muted">Thanks, {order.firstName}. We will start getting your order ready.</p>
         <div className="mt-6 border border-line bg-bg p-4 text-left">
           <p className="caps text-[11px] font-bold text-muted">Order number</p>
-          <p className="tnum mt-1 text-2xl font-black tracking-wide">{order.number}</p>
+          <p className="tnum mt-1 text-2xl font-extrabold tracking-wide">{order.number}</p>
           <dl className="mt-4 grid gap-2 text-sm">
             <div className="flex justify-between gap-4"><dt className="text-muted">Items</dt><dd className="tnum font-bold">{order.items}</dd></div>
             <div className="flex justify-between gap-4"><dt className="text-muted">Arrives</dt><dd className="text-right font-bold">{order.arrives}</dd></div>
             <div className="flex justify-between gap-4"><dt className="text-muted">Payment</dt><dd className="min-w-0 break-words text-right font-bold">{order.payLabel}</dd></div>
-            <div className="flex justify-between gap-4 border-t border-line pt-2"><dt className="font-bold">Total</dt><dd className="tnum text-lg font-black">{money(order.total)}</dd></div>
+            <div className="flex justify-between gap-4 border-t border-line pt-2"><dt className="font-bold">Total</dt><dd className="tnum text-lg font-extrabold">{money(order.total)}</dd></div>
           </dl>
         </div>
         <p className="mt-4 text-sm text-muted">This is a demo order. No payment was taken and nothing will be shipped.</p>
@@ -264,11 +264,11 @@ function SummaryItem({ it }) {
     <li className="flex gap-4 border-b border-line py-4 first:pt-0">
       <div className="relative w-20 shrink-0">
         {product ? <ImageSlot product={product} small ratio="4 / 5" className="!p-0.5" /> : <div className="h-24 bg-panel2" />}
-        <span className="tnum absolute -right-2 -top-2 grid h-6 min-w-[24px] place-items-center bg-fg px-1 text-xs font-black text-bg">{it.qty}</span>
+        <span className="tnum absolute -right-2 -top-2 grid h-6 min-w-[24px] place-items-center bg-fg px-1 text-xs font-extrabold text-bg">{it.qty}</span>
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-3">
-          <p className="font-black uppercase leading-tight" style={{ fontStretch: '85%' }}>{it.name}</p>
+          <p className="font-extrabold uppercase leading-tight" style={{ fontStretch: '85%' }}>{it.name}</p>
           <p className="tnum shrink-0 font-bold">{money(it.unit * it.qty)}</p>
         </div>
         <p className="mt-1 text-sm text-muted">Size {it.size} · {it.colour.name}</p>
@@ -384,7 +384,7 @@ function Checkout({ cart, onBack, onComplete }) {
     <div className="font-body">
       <header className="border-b border-line bg-bg">
         <div className="gutter mx-auto flex h-[60px] max-w-[1200px] items-center justify-between">
-          <button type="button" onClick={() => onBack(false)} aria-label={BRAND + ' home'} className="text-2xl font-black tracking-tight" style={{ fontStretch: '125%' }}>{BRAND}</button>
+          <button type="button" onClick={() => onBack(false)} aria-label={BRAND + ' home'} className="text-2xl font-extrabold tracking-tight" style={{ fontStretch: '110%' }}>{BRAND}</button>
           <p className="caps flex items-center gap-2 text-xs font-bold text-muted"><Lock size={14} aria-hidden="true" /> Checkout</p>
         </div>
       </header>
@@ -393,11 +393,11 @@ function Checkout({ cart, onBack, onComplete }) {
         <button type="button" onClick={() => onBack(true)} className="caps -ml-1 mb-4 inline-flex min-h-[44px] items-center gap-1 text-xs font-bold text-muted transition-colors duration-200 hover:text-fg">
           <ChevronLeft size={16} aria-hidden="true" /> Back to your cart
         </button>
-        <h1 className="mb-8 font-black uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(2.4rem, 6vw, 4.5rem)', fontStretch: '75%' }}>Checkout</h1>
+        <h1 className="mb-8 font-extrabold uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(2rem, 4.2vw, 3.2rem)', fontStretch: '85%' }}>Checkout</h1>
 
         {cart.length === 0 ? (
           <div className="border border-line bg-panel p-8">
-            <p className="text-2xl font-black uppercase" style={{ fontStretch: '75%' }}>Your cart is empty</p>
+            <p className="text-2xl font-extrabold uppercase" style={{ fontStretch: '85%' }}>Your cart is empty</p>
             <p className="mt-2 text-muted">Pick a hoodie first, then come back to check out.</p>
             <button type="button" onClick={() => onBack(false)} className="caps mt-5 min-h-[48px] bg-fg px-6 text-xs font-bold text-bg">Browse hoodies</button>
           </div>
@@ -527,7 +527,7 @@ function Checkout({ cart, onBack, onComplete }) {
                       <CardPreview number={card.number} name={card.name} exp={card.exp} cvv={card.cvv} brand={brand} flipped={flip} />
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="sm:col-span-2">
-                          <Field id="p-number" label="Card number" error={pErr.number} right={brand ? <span className="text-xs font-black tracking-[0.14em] text-muted">{BRAND_LABEL[brand]}</span> : null}>
+                          <Field id="p-number" label="Card number" error={pErr.number} right={brand ? <span className="text-xs font-extrabold tracking-[0.14em] text-muted">{BRAND_LABEL[brand]}</span> : null}>
                             <input {...pinp('number', card.number, (e) => updCard('number', formatCardNumber(e.target.value)), { type: 'text', inputMode: 'numeric', autoComplete: 'cc-number', placeholder: '1234 5678 9012 3456' })} />
                           </Field>
                         </div>
@@ -570,7 +570,7 @@ function Checkout({ cart, onBack, onComplete }) {
             {/* RIGHT: summary */}
             <aside aria-label="Order summary" className="min-w-0 border border-line bg-panel p-5 sm:p-6 lg:sticky lg:top-6">
               <div className="mb-5 flex items-baseline justify-between gap-3">
-                <h2 className="caps text-sm font-black">Order summary <span className="tnum text-muted">({count})</span></h2>
+                <h2 className="caps text-sm font-extrabold">Order summary <span className="tnum text-muted">({count})</span></h2>
                 <button type="button" onClick={() => onBack(true)} className="min-h-[44px] text-sm font-bold underline underline-offset-4 hover:opacity-70">Edit cart</button>
               </div>
               <ul>{cart.map((it) => <SummaryItem key={it.id} it={it} />)}</ul>
@@ -585,7 +585,7 @@ function Checkout({ cart, onBack, onComplete }) {
 
               <div className="mt-5 flex items-baseline justify-between gap-4 border-t border-line pt-5">
                 <span className="caps text-xs font-bold text-muted">Total</span>
-                <span className="tnum text-3xl font-black">{money(total)}</span>
+                <span className="tnum text-3xl font-extrabold">{money(total)}</span>
               </div>
 
               <button

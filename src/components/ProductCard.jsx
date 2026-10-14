@@ -10,7 +10,7 @@ export function Badge({ product }) {
   if (!label) return null;
   const solid = product.soldOut || label === 'Sale';
   return (
-    <span className={'caps absolute left-3 top-3 z-10 px-2 py-1 text-[10px] font-black ' + (solid ? 'bg-fg text-bg' : 'bg-accent text-onaccent')}>{label}</span>
+    <span className={'caps absolute left-3 top-3 z-10 px-2 py-1 text-[10px] font-extrabold ' + (solid ? 'bg-fg text-bg' : 'bg-accent text-onaccent')}>{label}</span>
   );
 }
 
@@ -47,7 +47,7 @@ export default function ProductCard({ product }) {
 
       <div className="mt-3 flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="font-black uppercase leading-tight tracking-tight" style={{ fontStretch: '85%' }}>
+          <h3 className="font-extrabold uppercase leading-tight tracking-tight" style={{ fontStretch: '85%' }}>
             <a href={productLink(product.slug)} className="hover:underline underline-offset-4">{product.name}</a>
           </h3>
           <p className="mt-0.5 flex items-center gap-1.5 text-sm text-muted">

@@ -2,24 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Layout concept: a quiet monochrome shop in the Zara and Gymshark mould. Full-bleed bands, sharp corners, heavy condensed capitals, one turmeric accent kept for the cart badge and selected states. */
+/* Soft palette: misty blue-grey ground, ink text (not pure black), one teal accent, a deep teal block for contrast. */
 :root {
-  --bg: #FAFAF8; --panel: #FFFFFF; --panel2: #F0F0EC; --fg: #0E0F11; --muted: #55595F;
-  --line: #DCDDD8; --accent: #E8A93A; --on-accent: #0E0F11; --stage: #EDEDE9; --grid: #D2D3CD;
-  --hero: #E9E9E4; --focus: #2B3A8C; --danger: #B3261E;
+  --bg: #F4F6F5; --panel: #FFFFFF; --panel2: #E9EEEC; --fg: #1E2B2E; --muted: #5A6B6E;
+  --line: #D3DCDA; --accent: #2F7F77; --on-accent: #FFFFFF; --stage: #E9EEEC; --grid: #D3DCDA;
+  --hero: #DDE8E5; --deep: #1F3A3A; --on-deep: #EAF2F0; --focus: #2F6FB5; --danger: #B3261E;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0C0D0F; --panel: #131518; --panel2: #1B1E22; --fg: #F2F2EE; --muted: #A3A7AE;
-    --line: #2A2D33; --accent: #E8A93A; --on-accent: #0E0F11; --stage: #17191D; --grid: #262A30;
-    --hero: #16181C; --focus: #E8A93A; --danger: #FF8A80;
+    --bg: #101719; --panel: #162023; --panel2: #1C292C; --fg: #E6EFEE; --muted: #9DB0B2;
+    --line: #2A3B3E; --accent: #6CB8AE; --on-accent: #0C1B1A; --stage: #1C292C; --grid: #2A3B3E;
+    --hero: #172528; --deep: #0D1D1E; --on-deep: #E6EFEE; --focus: #6CB8AE; --danger: #FF8A80;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0C0D0F; --panel: #131518; --panel2: #1B1E22; --fg: #F2F2EE; --muted: #A3A7AE;
-  --line: #2A2D33; --accent: #E8A93A; --on-accent: #0E0F11; --stage: #17191D; --grid: #262A30;
-  --hero: #16181C; --focus: #E8A93A; --danger: #FF8A80;
+  --bg: #101719; --panel: #162023; --panel2: #1C292C; --fg: #E6EFEE; --muted: #9DB0B2;
+  --line: #2A3B3E; --accent: #6CB8AE; --on-accent: #0C1B1A; --stage: #1C292C; --grid: #2A3B3E;
+  --hero: #172528; --deep: #0D1D1E; --on-deep: #E6EFEE; --focus: #6CB8AE; --danger: #FF8A80;
   color-scheme: dark;
 }
 body { background: var(--bg); color: var(--fg); font-family: 'Archivo', system-ui, sans-serif; font-size: 16px; }

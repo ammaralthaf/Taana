@@ -15,7 +15,9 @@ export default {
         onaccent: 'var(--on-accent)',
         stage: 'var(--stage)',
         hero: 'var(--hero)',
-        danger: 'var(--danger)'
+        danger: 'var(--danger)',
+        deep: 'var(--deep)',
+        ondeep: 'var(--on-deep)'
       },
       fontFamily: {
         display: ["'Archivo'", 'system-ui', 'sans-serif'],

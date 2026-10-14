@@ -54,12 +54,12 @@ export default function Shop({ route }) {
   const blurb = coll ? COLLECTIONS.find((c) => c.id === coll).blurb : 'Everything we have made and kept for sale right now.';
 
   return (
-    <div className="gutter mx-auto max-w-[1440px] py-10 lg:py-14">
+    <div className="gutter mx-auto max-w-[1280px] py-10 lg:py-14">
       <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted">
         <a href="#/" className="hover:text-fg hover:underline underline-offset-4">Home</a> / <span className="text-fg">Shop</span>
       </nav>
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-2">
-        <h1 className="font-black uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(2.6rem, 7vw, 5.5rem)', fontStretch: '75%' }}>{title}</h1>
+        <h1 className="font-extrabold uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(2.1rem, 4.6vw, 3.5rem)', fontStretch: '85%' }}>{title}</h1>
         <p className="max-w-[40ch] text-muted">{blurb}</p>
       </div>
 
@@ -94,7 +94,7 @@ export default function Shop({ route }) {
       {panel && (
         <div id="filters" className="rise grid gap-8 border-b border-line py-6 md:grid-cols-3">
           <fieldset>
-            <legend className="caps mb-3 text-xs font-black">Colour</legend>
+            <legend className="caps mb-3 text-xs font-extrabold">Colour</legend>
             <div className="flex flex-wrap gap-2">
               {colours.map((c) => (
                 <button key={c.name} type="button" aria-pressed={colour === c.name} aria-label={c.name} title={c.name}
@@ -108,7 +108,7 @@ export default function Shop({ route }) {
             </div>
           </fieldset>
           <fieldset>
-            <legend className="caps mb-3 text-xs font-black">Size</legend>
+            <legend className="caps mb-3 text-xs font-extrabold">Size</legend>
             <div className="flex flex-wrap gap-2">
               {SIZES.map((s) => (
                 <button key={s} type="button" aria-pressed={size === s} onClick={() => setSize(size === s ? '' : s)}
@@ -117,7 +117,7 @@ export default function Shop({ route }) {
             </div>
           </fieldset>
           <div>
-            <p className="caps mb-3 text-xs font-black">Availability</p>
+            <p className="caps mb-3 text-xs font-extrabold">Availability</p>
             <label className="flex min-h-[44px] cursor-pointer items-center gap-3">
               <input type="checkbox" checked={hideSold} onChange={(e) => setHideSold(e.target.checked)} className="h-5 w-5" />
               <span>Hide sold out</span>
@@ -130,7 +130,7 @@ export default function Shop({ route }) {
       {/* Grid */}
       {list.length === 0 ? (
         <div className="mt-10 border border-line bg-panel p-8">
-          <p className="text-2xl font-black uppercase" style={{ fontStretch: '75%' }}>{savedOnly ? 'No saved hoodies yet' : 'No hoodies match'}</p>
+          <p className="text-2xl font-extrabold uppercase" style={{ fontStretch: '85%' }}>{savedOnly ? 'No saved hoodies yet' : 'No hoodies match'}</p>
           <p className="mt-2 max-w-[44ch] text-muted">{savedOnly ? 'Tap the heart on any hoodie to keep it here.' : 'Try removing a filter.'}</p>
           <div className="mt-5 flex flex-wrap gap-3">
             {active > 0 && <button type="button" onClick={clear} className="caps min-h-[48px] bg-fg px-6 text-xs font-bold text-bg">Clear filters</button>}

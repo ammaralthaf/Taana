@@ -7,8 +7,8 @@ import { useStore } from '../context.js';
 
 export function Announcement() {
   return (
-    <div className="bg-fg text-bg">
-      <p className="gutter caps mx-auto max-w-[1440px] py-2.5 text-center text-[11px] font-bold">
+    <div className="bg-deep text-ondeep">
+      <p className="gutter caps mx-auto max-w-[1280px] py-2.5 text-center text-[11px] font-bold">
         Free shipping over {money(FREE_SHIP_OVER)} · Ships in {DISPATCH_DAYS} working days [CONFIRM]
       </p>
     </div>
@@ -28,13 +28,13 @@ export function Nav({ route }) {
   ];
   return (
     <header className="sticky z-40 border-b border-line bg-bg" style={{ top: 'env(safe-area-inset-top, 0px)' }}>
-      <div className="gutter mx-auto flex h-[60px] max-w-[1440px] items-center justify-between gap-4">
+      <div className="gutter mx-auto flex h-[60px] max-w-[1280px] items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <button
             type="button" aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu} onClick={() => setMenu((m) => !m)}
             className="-ml-2 grid h-11 w-11 place-items-center transition-opacity duration-200 hover:opacity-70 md:hidden"
           >{menu ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}</button>
-          <a href="#/" aria-label={BRAND + ' home'} className="text-2xl font-black tracking-tight" style={{ fontStretch: '125%' }}>{BRAND}</a>
+          <a href="#/" aria-label={BRAND + ' home'} className="text-2xl font-extrabold tracking-tight" style={{ fontStretch: '110%' }}>{BRAND}</a>
         </div>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
@@ -48,21 +48,21 @@ export function Nav({ route }) {
         <div className="flex items-center gap-1">
           <a href="#/shop?saved=1" aria-label={'Saved hoodies (' + wish.length + ')'} className="relative grid h-11 w-11 place-items-center transition-opacity duration-200 hover:opacity-70">
             <Heart size={22} aria-hidden="true" />
-            {wish.length > 0 && <span className="tnum absolute right-0.5 top-0.5 grid h-[18px] min-w-[18px] place-items-center bg-fg px-1 text-[10px] font-black text-bg">{wish.length}</span>}
+            {wish.length > 0 && <span className="tnum absolute right-0.5 top-0.5 grid h-[18px] min-w-[18px] place-items-center bg-fg px-1 text-[10px] font-extrabold text-bg">{wish.length}</span>}
           </a>
           <button
             ref={cartBtnRef} type="button" aria-label={'Open cart, ' + count + (count === 1 ? ' item' : ' items')} onClick={() => setCartOpen(true)}
             className="relative -mr-2 grid h-11 w-11 place-items-center transition-opacity duration-200 hover:opacity-70"
           >
             <ShoppingBag size={22} aria-hidden="true" />
-            {count > 0 && <span key={count} className="pop tnum absolute right-0.5 top-0.5 grid h-[18px] min-w-[18px] place-items-center bg-accent px-1 text-[10px] font-black text-onaccent">{count}</span>}
+            {count > 0 && <span key={count} className="pop tnum absolute right-0.5 top-0.5 grid h-[18px] min-w-[18px] place-items-center bg-accent px-1 text-[10px] font-extrabold text-onaccent">{count}</span>}
           </button>
         </div>
       </div>
 
       {menu && (
         <nav aria-label="Mobile" className="rise border-t border-line bg-bg md:hidden">
-          <ul className="gutter mx-auto max-w-[1440px] py-2">
+          <ul className="gutter mx-auto max-w-[1280px] py-2">
             {items.map((l) => (
               <li key={l.label} className="border-b border-line last:border-b-0">
                 {l.href ? (
@@ -84,26 +84,23 @@ export function Footer() {
   const col = 'caps min-h-[44px] text-left text-xs font-bold text-muted transition-colors duration-200 hover:text-fg';
   return (
     <footer className="border-t border-line bg-panel2">
-      <div className="gutter mx-auto grid max-w-[1440px] gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="gutter mx-auto grid max-w-[1280px] gap-10 py-12 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="min-w-0">
           <p className="max-w-[36ch] text-sm text-muted">Hoodies we design and make ourselves. [ADD ONE LINE ABOUT YOUR BRAND]</p>
         </div>
         <nav aria-label="Footer shop" className="flex flex-col items-start">
-          <p className="caps mb-2 text-xs font-black">Shop</p>
+          <p className="caps mb-2 text-xs font-extrabold">Shop</p>
           <a href={shopLink()} className={col + ' inline-flex items-center'}>All hoodies</a>
           {COLLECTIONS.map((c) => <a key={c.id} href={shopLink(c.id)} className={col + ' inline-flex items-center'}>{c.id}</a>)}
         </nav>
         <nav aria-label="Footer info" className="flex flex-col items-start">
-          <p className="caps mb-2 text-xs font-black">About</p>
+          <p className="caps mb-2 text-xs font-extrabold">About</p>
           <button type="button" onClick={() => goSection('story')} className={col}>Our story</button>
           <button type="button" onClick={() => goSection('how')} className={col}>How it works</button>
           <p className="mt-2 text-sm text-muted">[ADD CONTACT EMAIL]<br />[ADD INSTAGRAM HANDLE]</p>
         </nav>
       </div>
-      <div className="overflow-hidden" aria-hidden="true">
-        <p className="gutter mx-auto max-w-[1440px] select-none whitespace-nowrap font-black uppercase leading-[0.8] tracking-tight" style={{ fontSize: '25vw', fontStretch: '100%' }}>{BRAND}</p>
-      </div>
-      <p className="gutter mx-auto max-w-[1440px] border-t border-line py-5 text-sm text-muted">&copy; {BRAND}. All rights reserved.</p>
+      <p className="gutter mx-auto max-w-[1280px] border-t border-line py-5 text-sm text-muted">&copy; {BRAND}. All rights reserved.</p>
     </footer>
   );
 }
@@ -119,7 +116,7 @@ function CartRow({ it }) {
       <div className="flex min-w-0 flex-1 flex-col gap-2">
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="font-black uppercase leading-tight" style={{ fontStretch: '85%' }}>{it.name}</p>
+            <p className="font-extrabold uppercase leading-tight" style={{ fontStretch: '85%' }}>{it.name}</p>
             <p className="mt-1 text-sm text-muted">Size {it.size} · {it.colour.name}</p>
             <p className="tnum text-sm text-muted">{money(it.unit)} each</p>
           </div>
@@ -187,7 +184,7 @@ export function CartDrawer() {
         style={{ paddingTop: 'env(safe-area-inset-top, 0px)', paddingBottom: 'env(safe-area-inset-bottom, 0px)', paddingRight: 'env(safe-area-inset-right, 0px)' }}
       >
         <div className="flex items-center justify-between border-b border-line px-5">
-          <h2 className="caps py-5 text-sm font-black">Your cart <span className="tnum text-muted">({count})</span></h2>
+          <h2 className="caps py-5 text-sm font-extrabold">Your cart <span className="tnum text-muted">({count})</span></h2>
           <button ref={closeRef} type="button" aria-label="Close cart" onClick={onClose} className="-mr-2 grid h-11 w-11 place-items-center transition-opacity duration-200 hover:opacity-70">
             <X size={22} aria-hidden="true" />
           </button>
@@ -206,7 +203,7 @@ export function CartDrawer() {
           {cart.length === 0 ? (
             <div className="flex h-full flex-col items-start justify-center gap-4 py-10">
               <ShoppingBag size={36} strokeWidth={1.25} aria-hidden="true" className="text-muted" />
-              <p className="text-2xl font-black uppercase leading-tight" style={{ fontStretch: '75%' }}>Your cart is empty</p>
+              <p className="text-2xl font-extrabold uppercase leading-tight" style={{ fontStretch: '85%' }}>Your cart is empty</p>
               <p className="max-w-[32ch] text-muted">Pick a hoodie and it will show up here.</p>
               <a href={shopLink()} onClick={onClose} className="caps inline-flex min-h-[48px] items-center border-2 border-fg px-6 text-xs font-bold transition-colors duration-200 hover:bg-fg hover:text-bg">Browse hoodies</a>
             </div>
@@ -218,7 +215,7 @@ export function CartDrawer() {
         <div className="border-t border-line px-5 py-5">
           <div className="flex items-baseline justify-between">
             <span className="caps text-xs font-bold text-muted">Subtotal</span>
-            <span className="tnum text-2xl font-black">{money(subtotal)}</span>
+            <span className="tnum text-2xl font-extrabold">{money(subtotal)}</span>
           </div>
           <p className="mt-1 text-sm text-muted">Shipping and taxes are added at checkout. [CONFIRM GST AND SHIPPING]</p>
           <button type="button" onClick={goCheckout} disabled={cart.length === 0}

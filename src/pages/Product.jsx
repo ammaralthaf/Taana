@@ -10,7 +10,7 @@ function Accordion({ title, children, startOpen = false }) {
   const [open, setOpen] = useState(startOpen);
   return (
     <div className="border-b border-line">
-      <button type="button" aria-expanded={open} onClick={() => setOpen((o) => !o)} className="caps flex min-h-[56px] w-full items-center justify-between text-left text-xs font-black">
+      <button type="button" aria-expanded={open} onClick={() => setOpen((o) => !o)} className="caps flex min-h-[56px] w-full items-center justify-between text-left text-xs font-extrabold">
         {title}
         <ChevronDown size={18} aria-hidden="true" className={'transition-transform duration-200 ' + (open ? 'rotate-180' : '')} />
       </button>
@@ -33,8 +33,8 @@ export default function Product({ slug }) {
 
   if (!product) {
     return (
-      <div className="gutter mx-auto max-w-[1440px] py-20">
-        <h1 className="text-5xl font-black uppercase" style={{ fontStretch: '75%' }}>Hoodie not found</h1>
+      <div className="gutter mx-auto max-w-[1280px] py-20">
+        <h1 className="text-5xl font-extrabold uppercase" style={{ fontStretch: '85%' }}>Hoodie not found</h1>
         <p className="mt-3 text-muted">It may have been removed or the link is wrong.</p>
         <a href={shopLink()} className="caps mt-6 inline-flex min-h-[48px] items-center bg-fg px-6 text-xs font-bold text-bg">Browse all hoodies</a>
       </div>
@@ -52,7 +52,7 @@ export default function Product({ slug }) {
   };
 
   return (
-    <div className="gutter mx-auto max-w-[1440px] py-8 lg:py-12">
+    <div className="gutter mx-auto max-w-[1280px] py-8 lg:py-12">
       <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted">
         <a href="#/" className="hover:text-fg hover:underline underline-offset-4">Home</a> /{' '}
         <a href={shopLink()} className="hover:text-fg hover:underline underline-offset-4">Shop</a> /{' '}
@@ -83,7 +83,7 @@ export default function Product({ slug }) {
         {/* Info */}
         <div className="min-w-0 lg:sticky lg:top-24 lg:self-start">
           <p className="caps text-xs font-bold text-muted">{product.collection} collection</p>
-          <h1 className="mt-1 font-black uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', fontStretch: '75%' }}>{product.name}</h1>
+          <h1 className="mt-1 font-extrabold uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(2rem, 3.8vw, 2.9rem)', fontStretch: '85%' }}>{product.name}</h1>
           <div className="mt-3"><Price product={product} big /></div>
           <p className="tnum mt-1 text-sm text-muted">Inclusive of taxes. [CONFIRM]</p>
           <p className="mt-5 max-w-[46ch] text-lg">{product.blurb}</p>
@@ -95,7 +95,7 @@ export default function Product({ slug }) {
 
           {product.soldOut ? (
             <div className="mt-8 border border-line bg-panel p-5">
-              <p className="font-black uppercase" style={{ fontStretch: '85%' }}>Sold out</p>
+              <p className="font-extrabold uppercase" style={{ fontStretch: '85%' }}>Sold out</p>
               <p className="mt-1 text-muted">This one is gone for now. See what else is in the shop.</p>
               <a href={shopLink(product.collection)} className="caps mt-4 inline-flex min-h-[48px] items-center bg-fg px-6 text-xs font-bold text-bg">More from {product.collection}</a>
             </div>
@@ -103,7 +103,7 @@ export default function Product({ slug }) {
             <>
               <fieldset className="mt-8">
                 <div className="mb-3 flex items-center justify-between">
-                  <legend className="caps text-xs font-black">Size</legend>
+                  <legend className="caps text-xs font-extrabold">Size</legend>
                   <button type="button" aria-expanded={guide} onClick={() => setGuide((g) => !g)} className="min-h-[44px] text-sm font-bold underline underline-offset-4 hover:opacity-70">Size guide</button>
                 </div>
                 <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Size">
@@ -171,7 +171,7 @@ export default function Product({ slug }) {
       </div>
 
       <section aria-labelledby="more-h" className="mt-20">
-        <h2 id="more-h" className="mb-8 font-black uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontStretch: '75%' }}>You may also like</h2>
+        <h2 id="more-h" className="mb-8 font-extrabold uppercase leading-[0.9] tracking-tight" style={{ fontSize: 'clamp(1.75rem, 3.6vw, 2.6rem)', fontStretch: '85%' }}>You may also like</h2>
         <div className="grid grid-cols-2 gap-x-3 gap-y-8 md:grid-cols-3 lg:gap-x-5">
           {more.map((p) => <ProductCard key={p.slug} product={p} />)}
         </div>
