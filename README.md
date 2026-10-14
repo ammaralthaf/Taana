@@ -1,8 +1,8 @@
 # BLNK Hoodie Store
 
-A made-to-order custom hoodie store for India: storefront, live hoodie customizer, cart drawer and a three-step checkout. Built with React, Vite and Tailwind CSS. Icons from lucide-react.
+A catalogue store for hoodies you design and make yourself: home page, shop with filters, product pages, cart drawer and a three-step checkout. React, Vite, Tailwind CSS, lucide-react.
 
-**BLNK is a working name.** Change it in one place: `BRAND` at the top of `src/App.jsx`.
+**BLNK is a working name.** Change `BRAND` in `src/data/store.js`.
 
 ## Run it
 
@@ -13,34 +13,54 @@ npm run build    # production build into dist/
 npm run preview  # serve the production build
 ```
 
-## What's inside
+## Pages
 
-- **Storefront**: sticky nav with cart badge, hero, product details, how-it-works.
-- **Customizer**: front/back view, fabric and colours, text and graphics, size and fit, live price.
-- **Cart drawer**: quantity, remove, subtotal, saved in the browser (localStorage).
-- **Checkout**: shipping address, shipping method, payment (card with auto-format and Luhn check, UPI, cash on delivery), sticky summary, success modal.
-
-## Edit these constants (in `src/App.jsx`)
-
-| Constant | What it controls |
+| Route | What it is |
 | --- | --- |
-| `BRAND` | Store name |
-| `PRICING` | Base price and add-ons for the customizer |
-| `SHIP` | Shipping options, prices and free-shipping threshold |
-| `PRODUCTION_DAYS` | Made-to-order lead time shown at checkout |
-| `TAX_RATE` | Tax applied at checkout |
-| `COD_FEE` | Cash-on-delivery fee |
+| `#/` | Home: spotlight hoodie, "why we make our own hoodies" story with a worked example, featured hoodies, collections, how it works, photo strip |
+| `#/shop` | All hoodies. Filter by collection, colour, size, availability; sort; saved list (`#/shop?c=Street`, `#/shop?saved=1`) |
+| `#/product/<slug>` | Photo gallery, size picker and guide, quantity, add to cart, details |
+| `#/checkout` | Shipping address, shipping method, payment, order summary, success modal |
 
-All prices, tax and fee values are **examples**. Set your real numbers before launch.
+## Add or change a hoodie
+
+Edit the `PRODUCTS` list in `src/data/store.js`. The hoodies in there are **samples**; replace them with your real range.
+
+```js
+{ slug: 'night-market', name: 'Night Market', collection: 'Street',
+  price: 2499, colour: { name: 'Black', hex: '#16171A' }, tag: 'New',
+  featured: true, sizes: ['S', 'M', 'L', 'XL', 'XXL'], blurb: 'Short description.' }
+```
+
+- `featured: true` puts it on the home page (the first four are used).
+- `compareAt` shows a crossed-out price and a Sale label. `soldOut: true` marks it sold out.
+- `sizes` lists the sizes in stock.
+
+## Add photos
+
+Put images in `public/images/`. They appear automatically; until then each spot shows a framed placeholder that names the file it expects. See `public/images/README.txt`.
+
+- `<slug>-1.jpg`, `<slug>-2.jpg`, `<slug>-3.jpg`: product photos (the second shows on hover)
+- `story-1.jpg` to `story-3.jpg`, `collection-<name>.jpg`, `lookbook-1.jpg` to `lookbook-4.jpg`: home page
+
+Recommended: 1200 x 1500 px (4:5), JPG.
+
+## Other things to edit
+
+| Where | What |
+| --- | --- |
+| `src/data/store.js` | `FREE_SHIP_OVER`, `DISPATCH_DAYS`, collections, size chart, details text |
+| `src/pages/Checkout.jsx` | `SHIP` (shipping prices), `TAX_RATE`, `COD_FEE` |
+| `src/pages/Home.jsx` | Home page copy, including the story section |
+
+All prices, tax and fees are **examples**. Anything written like `[THIS]` in the site is a placeholder for a detail you still need to fill in (return policy, fabric, contact, and so on).
 
 ## Before you go live
 
-Anything marked `[LIKE THIS]` in the UI is a placeholder for a business detail not yet decided (company name, address, support contact, policies).
-
-This is a front-end only. **No payments are processed and no orders are saved.** The "Place order" button shows the success screen only. To take real orders you need:
+This is front-end only. **No payments are processed and no orders are saved.** "Place order" shows the success screen only. To take real orders you need:
 
 1. A payment provider (for example Razorpay or Cashfree) and a small backend to create and verify payments.
 2. An order store and confirmation emails.
-3. Real card data must never touch your own server; use the provider's hosted fields.
+3. Card details must never touch your own server; use the provider's hosted fields.
 
 Cash on delivery has high return-to-origin rates in India (roughly 25-30% against 2-3% for prepaid), so consider nudging customers to prepay.
